@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true" class="ion-no-padding">
+  <div class="main-wrapper font-['Space_Grotesk']">
+    
+    <div class="glow-sphere glow-pink"></div>
+    <div class="glow-sphere glow-cyan"></div>
+
+    <header class="page-header">
+      <div class="logo-container">
+        <h1 class="logo-text">SNAKE GAME</h1>
+      </div>
+    </header>
+
+    <main class="content-container">
+      <div class="hero-section">
+        <div class="svg-container">
+          <div class="svg-glow"></div>
+          <svg class="hero-svg" viewBox="0 0 100 100">
+            <path d="M20,80 C20,80 30,20 50,50 C70,80 80,20 80,20" fill="none" stroke="#ffabf3" stroke-linecap="round" stroke-width="8"></path>
+            <circle cx="80" cy="20" fill="#00dddd" r="5"></circle>
+          </svg>
+        </div>
+        <h2 class="hero-title">SNAKE</h2>
+      </div>
+
+      <div class="form-section">
+        <div class="input-group">
+          <label class="input-label">NameSnake</label>
+          <div class="input-wrapper">
+            <input [(ngModel)]="codename" class="name-input" placeholder="---" type="text"
+              (input)="showError = false"/>
+            <div class="animated-underline"></div>
+          </div>
+          <!-- ✅ TAMBAHAN: error inline, tidak pakai alert() -->
+          <p class="input-error" *ngIf="showError">⚠ NameSnake min. 3 characters</p>
+        </div>
+
+        <div class="button-wrapper">
+          <button (click)="startSession()" class="start-button">
+            <span class="button-text">START SESSION</span>
+            <div class="button-shine"></div>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="status-indicator">
+        <span class="status-dot"></span> SYSTEM_ACTIVE
+      </div>
+      <div class="latency-text">LATENCY: {{ latency }}MS</div>
+    </footer>
+
+  </div>
+</ion-content>

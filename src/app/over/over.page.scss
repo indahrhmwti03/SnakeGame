@@ -1,0 +1,122 @@
+.main-wrapper {
+  background-color: #131318;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  z-index: 10;
+  padding: 0 1.5rem;
+}
+
+.header-section {
+  text-align: center;
+  .icon-main {
+    font-size: 4rem;
+    color: #ffabf3;
+    text-shadow: 0 0 20px rgba(255, 171, 243, 0.6);
+    margin-bottom: 0.5rem;
+  }
+  .title-gameover {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: #ffabf3;
+    text-shadow: 0 0 20px rgba(255, 171, 243, 0.6);
+  }
+}
+
+.score-section {
+  text-align: center;
+  .protocol-label {
+    font-size: 20px;
+    letter-spacing: 0.4em;
+    color: rgba(0, 221, 221, 0.7);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .score-number {
+    font-size: 8rem;
+    font-weight: 900;
+    color: #e4e1e9;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(255, 171, 243, 0.3);
+  }
+  .score-label {
+    margin-top: 1rem;
+    color: #c6c6c6;
+    letter-spacing: 0.2em;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .btn-restart {
+    background: linear-gradient(to right, #ffabf3, #810081);
+    color: #380038;
+    padding: 1.5rem;
+    border-radius: 15px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 0 30px rgba(255, 171, 243, 0.3);
+    transition: transform 0.3s;
+    will-change: transform;
+    &:active { transform: scale(0.95); }
+  }
+
+  .btn-menu {
+    background: transparent;
+    border: 1px solid rgba(0, 221, 221, 0.3);
+    color: #00dddd;
+    padding: 1.25rem;
+    border-radius: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: background 0.3s;
+    &:hover { background: rgba(0, 221, 221, 0.1); }
+  }
+}
+
+.bg-void {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  .glow-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    // filter: blur(120px) ← dihapus, ini biang lag di mobile
+    background: radial-gradient(circle, rgba(255, 171, 243, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+}

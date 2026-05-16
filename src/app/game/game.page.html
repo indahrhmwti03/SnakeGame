@@ -1,0 +1,82 @@
+<ion-content [fullscreen]="true" class="ion-no-scroll">
+  <div class="game-wrapper">
+    
+    <nav class="game-header">
+      <div class="header-left">
+        <span class="neon-text">🐉</span>
+        <h1>SNAKE</h1>
+      </div>
+      <div class="header-right">
+        <button type="button" class="icon-nav" (click)="toggleSettings()">
+          ⚙️
+        </button>
+      </div>
+    </nav>
+
+    <main class="game-main">
+      <div class="dashboard">
+        <div class="stat">
+          <p>SCORE</p>
+          <span class="text-pink">{{ score }}</span>
+        </div>
+        <div class="stat items-end">
+          <p>HIGH SCORE</p>
+          <span class="text-cyan">{{ highScore }}</span>
+        </div>
+      </div>
+
+      <div class="board-frame">
+        <div class="snake-grid">
+          <div *ngFor="let cell of gridArray; let i = index" 
+               class="cell"
+               [ngClass]="{'is-snake': isSnake(i), 'is-food': isFood(i)}">
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-section">
+        <div class="dpad-compact">
+          <button type="button" (click)="changeDirection('UP')" class="d-btn up">▲</button>
+          <div class="dpad-mid">
+            <button type="button" (click)="changeDirection('LEFT')" class="d-btn">◀</button>
+            <button type="button" (click)="changeDirection('RIGHT')" class="d-btn">▶</button>
+          </div>
+          <button type="button" (click)="changeDirection('DOWN')" class="d-btn down">▼</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="game-footer">
+      <button type="button" class="home-tab" (click)="goHome()">
+        🏠
+        <span class="label">HOME</span>
+      </button>
+    </footer>
+
+    <ion-modal [isOpen]="isSettingsOpen" (didDismiss)="isSettingsOpen = false" class="settings-modal" mode="md">
+      <ng-template>
+        <div class="modal-wrapper">
+          <header>
+            <h2>SETTINGS</h2>
+            <button type="button" (click)="toggleSettings()" class="save-btn">SAVE</button>
+          </header>
+          
+          <div class="setting-row">
+            <label>SNAKE SPEED ({{ moveSpeed }}ms)</label>
+            <ion-range min="50" max="250" step="10" [(ngModel)]="moveSpeed" mode="md">
+              <span slot="start">Fast</span>
+              <span slot="end">Slow</span>
+            </ion-range>
+          </div>
+
+          <div class="setting-row flex-between">
+            <label>EAT SOUND EFFECT</label>
+            <ion-toggle [(ngModel)]="isMusicOn" mode="md"></ion-toggle>
+          </div>
+          
+        </div>
+      </ng-template>
+    </ion-modal>
+
+  </div>
+</ion-content>

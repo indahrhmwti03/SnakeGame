@@ -1,0 +1,99 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+
+/* Custom global styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-primary: #69f6b8;
+  --color-surface-container: #0f1930;
+  --color-on-primary: #005a3c;
+}
+
+/* Material Symbols Font */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* Exit Alert */
+.exit-alert {
+  .alert-wrapper {
+    border-radius: 20px;
+    background: #1e1e1e;
+    padding: 10px;
+  }
+
+  .alert-message {
+    color: white;
+  }
+
+  .alert-button-group {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .btn-cancel {
+    background: #333;
+    color: white;
+    border-radius: 10px;
+    flex: 1;
+  }
+
+  .btn-exit {
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+    flex: 1;
+  }
+}

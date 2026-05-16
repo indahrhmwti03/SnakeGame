@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true" class="ion-no-padding">
+  <div class="main-wrapper">
+    
+    <main class="content-container">
+      <header class="header-section">
+        <span class="icon-main">🎮</span>
+        <h1 class="title-gameover">GAME OVER</h1>
+      </header>
+
+      <section class="score-section">
+        <div class="protocol-label">
+          <span>FINAL SCORE</span>
+        </div>
+        <div class="score-display">
+          <h2 class="score-number">{{ score.toLocaleString() }}</h2>
+        </div>
+        <p class="score-label">TOTAL SCORE</p>
+      </section>
+
+      <div class="button-group">
+        <button (click)="restartGame()" class="btn-restart" tabindex="-1">
+          🔄
+          <span class="btn-text">RESTART</span>
+          <div class="btn-shine"></div>
+        </button>
+
+        <button (click)="goToMenu()" class="btn-menu" tabindex="-1">
+          🏠
+          MAIN MENU
+        </button>
+      </div>
+    </main>
+
+    <div class="bg-effects">
+      <div class="glow-center"></div>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,315 @@
+// ==========================================
+// 1. VARIABEL WARNA (Cyberpunk Theme)
+// ==========================================
+$neon-pink: #ffabf3;
+$neon-cyan: #00dddd;
+$neon-orange: #ffb778;
+$bg-dark: #050507;
+
+// ==========================================
+// 1.5 GLOBAL RESETS (Fix iOS/Android Button)
+// ==========================================
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+// ==========================================
+// 2. WRAPPER UTAMA
+// ==========================================
+.game-wrapper {
+  height: 100vh;
+  background: radial-gradient(circle at center, #1a1a2e 0%, $bg-dark 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;  
+  width: 100%;      // ← tambah ini
+  top: 0;           // ← tambah ini
+  left: 0;          // ← tambah ini
+}
+
+// ==========================================
+// 3. HEADER
+// ==========================================
+.game-header {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $neon-pink;
+    h1 { font-size: 1.5rem; font-weight: 950; letter-spacing: 3px; margin: 0; }
+    span { font-size: 2rem; }
+  }
+  .header-right .icon-nav {
+    // background dan border sudah di-reset di global
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 2.0rem;
+    padding: 8px;
+    line-height: 1;
+    &:active { color: $neon-cyan; }
+  }
+}
+
+// ==========================================
+// 4. GAME MAIN
+// ==========================================
+.game-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+// ==========================================
+// 5. SCOREBOARD
+// ==========================================
+.dashboard {
+  width: 90%;
+  max-width: 380px;
+  display: flex;
+  justify-content: space-between;
+  
+  .stat {
+    p { font-size: 11px; color: #888; font-weight: 900; margin: 0; letter-spacing: 2px; }
+    span { font-size: 3.5rem; font-weight: 1000; line-height: 1.1; display: block; }
+    .text-pink { color: $neon-pink; text-shadow: 0 0 20px rgba($neon-pink, 0.6); }
+    .text-cyan { color: $neon-cyan; text-shadow: 0 0 20px rgba($neon-cyan, 0.6); }
+  }
+}
+
+// ==========================================
+// 6. BOARD FRAME & GRID
+// ==========================================
+.board-frame {
+  width: 350px;
+  height: 350px;
+  background: $bg-dark;
+  border: 5px solid #1e1e26;
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg, $neon-pink, transparent, $neon-cyan);
+    z-index: -1;
+    border-radius: 22px;
+    opacity: 0.2;
+  }
+}
+
+.snake-grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 1.5px;
+  height: 100%;
+  
+  .cell {
+    background: rgba(255, 255, 255, 0.04);
+    aspect-ratio: 1/1;
+    border-radius: 2px;
+
+    &.is-snake { 
+      background: $neon-pink !important; 
+      box-shadow: 0 0 15px $neon-pink, 0 0 5px white; 
+      border-radius: 4px;
+      z-index: 5;
+    }
+    
+    &.is-food { 
+      background: $neon-orange !important; 
+      border-radius: 50%; 
+      box-shadow: 0 0 25px $neon-orange;
+      animation: pulse 0.4s infinite alternate;
+    }
+  }
+}
+
+// ==========================================
+// 7. CONTROLS (D-PAD)
+// ==========================================
+.dpad-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  .dpad-mid { display: flex; gap: 45px; }
+  .d-btn {
+    width: 58px; height: 58px;
+    background: #1f1f27;
+    border-radius: 16px;
+    color: white;
+    // border: none sudah di global
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 0 #000;
+    span { font-size: 2.5rem; }
+    &:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #000;
+      background: $neon-pink; 
+      color: black;
+    }
+  }
+}
+
+// ==========================================
+// 8. SETTINGS MODAL (Ultra Clear Contrast)
+// ==========================================
+.settings-modal {
+  --height: auto;
+  --width: 92%;
+  --max-width: 350px;
+  --border-radius: 28px;
+  --background: transparent;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+
+  &::part(content) {
+    background: linear-gradient(180deg, #0f0f1a 0%, #050507 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba($neon-cyan, 0.5);
+    box-shadow: inset 0 0 25px rgba($neon-cyan, 0.1);
+    padding: 5px;
+  }
+
+  .modal-wrapper {
+    padding: 25px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; 
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 15px;
+
+      h2 { 
+        color: $neon-pink; 
+        font-weight: 900; 
+        margin: 0; 
+        letter-spacing: 2px; 
+        font-size: 1.4rem;
+        text-shadow: 0 0 10px rgba($neon-pink, 0.6);
+      }
+
+      .save-btn {
+        background: $neon-cyan; 
+        color: #000 !important;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-weight: 800;
+        font-size: 11px;
+        text-transform: uppercase;
+        box-shadow: 0 0 15px rgba($neon-cyan, 0.4);
+        &:active {
+          transform: scale(0.95);
+          background: #ffffff;
+        }
+      }
+    }
+
+    .setting-row {
+      width: 100%;
+
+      label { 
+        display: block; 
+        color: #ffffff; 
+        font-size: 12px; 
+        font-weight: 900; 
+        margin-bottom: 15px; 
+        letter-spacing: 1px; 
+        text-transform: uppercase;
+        text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      }
+
+      ion-range {
+        padding: 0;
+        --bar-height: 6px;
+        --bar-background: rgba(255, 255, 255, 0.2);
+        --bar-background-active: #{$neon-cyan};
+        --knob-background: #ffffff;
+        --knob-size: 22px;
+        &::part(knob) { 
+          box-shadow: 0 0 15px $neon-cyan; 
+          border: 3px solid $neon-cyan; 
+        }
+      }
+
+      &.flex-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.08); 
+        padding: 18px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        label { 
+          margin-bottom: 0; 
+          color: #fff; 
+          font-size: 12px;
+          flex: 1;
+        }
+        
+        ion-toggle {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// 9. IONIC COMPONENTS (Toggle & Footer)
+// ==========================================
+ion-toggle {
+  --handle-background: #{$neon-pink};
+  --handle-background-checked: #{$neon-cyan};
+  --track-background: #333;
+  --track-background-checked: rgba(0, 221, 221, 0.3);
+}
+
+.game-footer {
+  padding: 15px 0 30px 0;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  .home-tab {
+    // background dan border sudah di global
+    display: flex; flex-direction: column; align-items: center;
+    color: $neon-cyan;
+    .label { font-size: 11px; font-weight: 900; margin-top: 4px; letter-spacing: 2px; }
+    span { font-size: 2.2rem; }
+  }
+}
+
+// ==========================================
+// 10. ANIMATIONS & HELPERS
+// ==========================================
+@keyframes pulse { from { transform: scale(0.7); } to { transform: scale(1); } }
+.items-end { align-items: flex-end; text-align: right; }
+.neon-text { text-shadow: 0 0 15px $neon-pink; }
