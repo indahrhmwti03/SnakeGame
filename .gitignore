@@ -79,3 +79,4 @@ captures/
 .externalNativeBuild/
 .cxx/.idea/
 *.apk/
+android/
